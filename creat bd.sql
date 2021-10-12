@@ -1,56 +1,62 @@
+create sequence seq_id
+    minvalue 1
+    maxvalue 9999999999999
+    start with 1
+    increment by 1
+    cache 10;
+
 create table regions(
-id_regions number primary key,
+id_regions number default seq_id.nextval primary key,
 name varchar(100)
 );
 
 create table town(
-id_town number primary key,
+id_town number default seq_id.nextval primary key,
 name varchar(100),
 id_regions number references regions (id_regions)
 );
 
 create table medical_organization (
-id_medical_organization number primary key,
+id_medical_organization number default seq_id.nextval primary key,
 name varchar(100),
 id_town number references town (id_town)
 );
 
 create table type_hospital (
-id_type_hospital number primary key,
+id_type_hospital number default seq_id.nextval primary key,
 name varchar(100)
 );
 
 create table status_hospital (
-id_status_hospital number primary key,
+id_status_hospital number default seq_id.nextval primary key,
 name varchar(100)
 );
 
 create table archive (
-id_archive number primary key,
-name varchar(100)
+id_archive number default seq_id.nextval primary key,
+name varchar(100),
+delete_dt date
 );
 
 create table plots (
-id_plots number primary key,
+id_plots number default seq_id.nextval primary key,
 name varchar(100)
 );
 
 create table floor (
-id_floor number primary key,
+id_floor number default seq_id.nextval primary key,
 name varchar(100)
 );
 
-
-
 create table age (
-id_age number primary key ,
+id_age number default seq_id.nextval primary key,
 name varchar(100),
 min_age int,
 max_age int
 );
 
 create table speciality (
-id_speciality number primary key ,
+id_speciality number default seq_id.nextval primary key,
 name varchar(100),
 id_floor number references floor (id_floor),
 qualification int,
@@ -59,25 +65,25 @@ id_archive number references archive (id_archive)
 );
 
 create table working_hours (
-id_working_hours number primary key ,
-start_mon time,
-end_mon time,
-start_tues time,
-end_tues time,
-start_wed time,
-end_wed time,
-start_thurs time,
-end_thurs time,
-start_fri time,
-end_fri time,
-start_sat time,
-end_sat time,
-start_sun time,
-end_sun time
+id_working_hours number default seq_id.nextval primary key,
+start_mon timestamp ,
+end_mon timestamp ,
+start_tues timestamp ,
+end_tues timestamp ,
+start_wed timestamp ,
+end_wed timestamp ,
+start_thurs timestamp ,
+end_thurs timestamp ,
+start_fri timestamp ,
+end_fri timestamp ,
+start_sat timestamp ,
+end_sat timestamp ,
+start_sun timestamp ,
+end_sun timestamp
 );
 
 create table hospital (
-id_hospital number primary key,
+id_hospital number default seq_id.nextval primary key,
 name varchar(100),
 id_medical_organization number references medical_organization (id_medical_organization),
 id_type_hospital number references type_hospital (id_type_hospital),
@@ -87,10 +93,66 @@ id_archive number references archive (id_archive)
 );
 
 create table doctor (
-id_doctor number primary key ,
+id_doctor number default seq_id.nextval primary key,
 name varchar(100),
 surname varchar(100),
 patronymic varchar(100),
 id_hospital number references hospital (id_hospital),
 id_archive number references archive (id_archive)
 );
+
+create table plots_and_doctor (
+id_plots_and_doctor number default seq_id.nextval primary key,
+id_doctor number references doctor (id_doctor),
+id_plots number references plots (id_plots)
+);
+
+create table  speciality_and_doctor (
+id_speciality_and_doctor number default seq_id.nextval primary key,
+id_doctor number references doctor (id_doctor),
+id_speciality number references speciality (id_speciality)
+);
+
+create table status_ticket (
+id_status_ticket   number default seq_id.nextval primary key,
+name varchar(100)
+);
+
+create table ticket (
+    id_ticket      number default seq_id.nextval primary key,
+    id_doctor      number references doctor (id_doctor),
+    start_time     timestamp,
+    end_time       timestamp,
+    id_status_ticket number references status_ticket (id_status_ticket)
+);
+
+create table account (
+id_account number default seq_id.nextval primary key,
+login varchar2(100),
+password varchar2(100)
+);
+
+create table patient (
+id_patient number default seq_id.nextval primary key,
+name varchar(100) ,
+surname varchar(100) ,
+patronymic varchar(100) default null,
+floor number references floor (id_floor),
+birthday date,
+phone varchar(9) default null,
+id_plots number references plots (id_plots),
+id_account number references account (id_account)
+);
+
+create table status_records (
+id_status_records number default seq_id.nextval primary key,
+name varchar(100)
+);
+
+create table records (
+id_records number default seq_id.nextval primary key,
+id_ticket number references ticket (id_ticket),
+id_patient number references patient (id_patient),
+id_status_records number references status_records (id_status_records)
+);
+
