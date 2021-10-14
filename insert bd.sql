@@ -264,7 +264,7 @@ insert into UHATKIN_EV.HOSPITAL (id_hospital, name, id_medical_organization, id_
 values (default, 'Больница №2',1,2,1,4,2);
 
 insert into UHATKIN_EV.HOSPITAL (id_hospital, name, id_medical_organization, id_type_hospital, id_status_hospital, id_working_hours, id_archive)
-values (default, 'Больница 1',2,1,2,5,2);
+values (default, 'Больница №1',2,1,2,5,2);
 
 insert into UHATKIN_EV.HOSPITAL (id_hospital, name, id_medical_organization, id_type_hospital, id_status_hospital, id_working_hours, id_archive)
 values (default, 'Больница №2',3,1,2,3,2);
@@ -294,6 +294,104 @@ values (default, 'Больница №3',17,1,2,5,2);
 
 --Заполнение таблицы больницы
 
---insert into UHATKIN_EV.DOCTOR (id_doctor, name, surname, patronymic, id_hospital, id_archive)
---values (default, 'Олег','Ухаткин', 'Анатольевич',)
+insert into UHATKIN_EV.DOCTOR (id_doctor, name, surname, patronymic, id_hospital, id_archive)
+values (default, 'Олег','Ухаткин', 'Анатольевич',4,2);
+
+insert into UHATKIN_EV.DOCTOR (id_doctor, name, surname, patronymic, id_hospital, id_archive)
+values (default, 'Ирина','Перов', 'Игоревна',7,2);
+
+insert into UHATKIN_EV.DOCTOR (id_doctor, name, surname, patronymic, id_hospital, id_archive)
+values (default, 'Ирина','Пунтус', 'Петровна',4,2);
+
+insert into UHATKIN_EV.DOCTOR (id_doctor, name, surname, patronymic, id_hospital, id_archive)
+values (default, 'Алексей','Козлитин', 'Павлович',9,2);
+
+insert into UHATKIN_EV.DOCTOR (id_doctor, name, surname, patronymic, id_hospital, id_archive)
+values (default, 'Олег','Мармок', 'Олегович',11,2);
+
+insert into UHATKIN_EV.DOCTOR (id_doctor, name, surname, patronymic, id_hospital, id_archive)
+values (default, 'Светлана','Ухаткина', 'Анатольевна',10,1);
+
+--Заполнение таблицы докторов
+
+insert into UHATKIN_EV.PLOTS_AND_DOCTOR (id_plots_and_doctor, id_doctor, id_plots)
+values (default, 1,1);
+
+insert into UHATKIN_EV.PLOTS_AND_DOCTOR (id_plots_and_doctor, id_doctor, id_plots)
+values (default, 2,2);
+
+insert into UHATKIN_EV.PLOTS_AND_DOCTOR (id_plots_and_doctor, id_doctor, id_plots)
+values (default, 3,3);
+
+insert into UHATKIN_EV.PLOTS_AND_DOCTOR (id_plots_and_doctor, id_doctor, id_plots)
+values (default, 4,4);
+
+insert into UHATKIN_EV.PLOTS_AND_DOCTOR (id_plots_and_doctor, id_doctor, id_plots)
+values (default, 5,2);
+
+insert into UHATKIN_EV.PLOTS_AND_DOCTOR (id_plots_and_doctor, id_doctor, id_plots)
+values (default, 6,1);
+
+--Заполнение таблицы участки и доктора
+
+insert into UHATKIN_EV.TICKET (id_ticket,id_doctor, start_time, end_time, id_status_ticket)
+values (default, 1, '15-07-2021 18-00-00','15-07-2021 18-30-00',2);
+
+insert into UHATKIN_EV.TICKET (id_ticket,id_doctor, start_time, end_time, id_status_ticket)
+values (default, 2, '15-11-2021 12-00-00','15-11-2021 12-30-00',1);
+
+insert into UHATKIN_EV.TICKET (id_ticket,id_doctor, start_time, end_time, id_status_ticket)
+values (default, 3, '30-11-2021 15-00-00','30-11-2021 15-30-00',1);
+
+insert into UHATKIN_EV.TICKET (id_ticket,id_doctor, start_time, end_time, id_status_ticket)
+values (default, 4, '01-11-2021 13-00-00','01-11-2021 13-10-00',1);
+
+insert into UHATKIN_EV.TICKET (id_ticket,id_doctor, start_time, end_time, id_status_ticket)
+values (default, 5, '14-11-2021 15-55-00','14-11-2021 16-05-00',1);
+
+insert into UHATKIN_EV.TICKET (id_ticket,id_doctor, start_time, end_time, id_status_ticket)
+values (default, 6, '12-11-2021 17-00-00','12-11-2021 18-00-00',1);
+
+----Заполнение таблицы талоны
+
+insert into UHATKIN_EV.SPECIALITY_AND_DOCTOR (id_speciality_and_doctor, id_doctor, id_speciality)
+values (default, 1,1);
+
+insert into UHATKIN_EV.SPECIALITY_AND_DOCTOR (id_speciality_and_doctor, id_doctor, id_speciality)
+values (default, 2,1);
+
+insert into UHATKIN_EV.SPECIALITY_AND_DOCTOR (id_speciality_and_doctor, id_doctor, id_speciality)
+values (default, 3,2);
+
+insert into UHATKIN_EV.SPECIALITY_AND_DOCTOR (id_speciality_and_doctor, id_doctor, id_speciality)
+values (default, 4,4);
+
+insert into UHATKIN_EV.SPECIALITY_AND_DOCTOR (id_speciality_and_doctor, id_doctor, id_speciality)
+values (default, 5,4);
+
+insert into UHATKIN_EV.SPECIALITY_AND_DOCTOR (id_speciality_and_doctor, id_doctor, id_speciality)
+values (default, 6,2);
+
+insert into UHATKIN_EV.SPECIALITY_AND_DOCTOR (id_speciality_and_doctor, id_doctor, id_speciality)
+values (default, 1,2);
+
+----Заполнение таблицы доктора и специальности
+
+insert into UHATKIN_EV.RECORDS (id_records, id_ticket, id_patient, id_status_records)
+values (default, 3,2,2);
+
+insert into UHATKIN_EV.RECORDS (id_records, id_ticket, id_patient, id_status_records)
+values (default, 4,3,2);
+
+insert into UHATKIN_EV.RECORDS (id_records, id_ticket, id_patient, id_status_records)
+values (default, 5,4,2);
+
+insert into UHATKIN_EV.RECORDS (id_records, id_ticket, id_patient, id_status_records)
+values (default, 6,5,2);
+
+insert into UHATKIN_EV.RECORDS (id_records, id_ticket, id_patient, id_status_records)
+values (default, 3,2,1);
+
+--Заполнение таблицы записи
+
 commit;
