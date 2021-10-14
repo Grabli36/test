@@ -175,7 +175,7 @@ name varchar(100)
 create table archive (
 id_archive number default seq_id_archive.nextval primary key,
 name varchar(100),
-delete_dt date
+delete_dt date default null
 );
 
 create table plots (
