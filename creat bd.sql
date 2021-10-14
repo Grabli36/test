@@ -206,21 +206,23 @@ id_archive number references archive (id_archive)
 
 create table working_hours (
 id_working_hours number default seq_id_working_hours.nextval primary key,
-start_mon timestamp ,
-end_mon timestamp ,
-start_tues timestamp ,
-end_tues timestamp ,
-start_wed timestamp ,
-end_wed timestamp ,
-start_thurs timestamp ,
-end_thurs timestamp ,
-start_fri timestamp ,
-end_fri timestamp ,
-start_sat timestamp ,
-end_sat timestamp ,
-start_sun timestamp ,
-end_sun timestamp
+start_mon varchar(100) ,
+end_mon varchar(100) ,
+start_tues varchar(100) ,
+end_tues varchar(100) ,
+start_wed varchar(100),
+end_wed varchar(100),
+start_thurs varchar(100) ,
+end_thurs varchar(100) ,
+start_fri varchar(100),
+end_fri varchar(100),
+start_sat varchar(100) ,
+end_sat varchar(100),
+start_sun varchar(100) ,
+end_sun varchar(100)
 );
+
+
 
 create table hospital (
 id_hospital number default seq_id_hospital.nextval primary key,

@@ -231,8 +231,17 @@ values (default,'Закрыт');
 
 --Заполнение таблицы статус таллона
 
---insert into UHATKIN_EV.WORKING_HOURS (id_working_hours, start_mon, end_mon, start_tues, end_tues, start_wed, end_wed, start_thurs, end_thurs, start_fri, end_fri, start_sat, end_sat, start_sun, end_sun)
---values (default, '8:00:00','18:00:00','8:00:00','18:00:00','8:00:00','18:00:00','8:00:00','18:00:00','8:00:00','18:00:00','8:00:00','18:00:00','8:00:00','18:00:00');
+insert into UHATKIN_EV.WORKING_HOURS (id_working_hours, start_mon, end_mon, start_tues, end_tues, start_wed, end_wed, start_thurs, end_thurs, start_fri, end_fri, start_sat, end_sat, start_sun, end_sun)
+values (default, '8:00','18:00','8:00','18:00','8:00','18:00','8:00','18:00','8:00','18:00','8:00','18:00','8:00','18:00');
+
+insert into UHATKIN_EV.WORKING_HOURS (id_working_hours, start_mon, end_mon, start_tues, end_tues, start_wed, end_wed, start_thurs, end_thurs, start_fri, end_fri, start_sat, end_sat, start_sun, end_sun)
+values (default, '8:00','18:00','8:00','18:00','8:00','18:00','8:00','18:00','8:00','18:00','8:00','21:00','8:00','21:00');
+
+insert into UHATKIN_EV.WORKING_HOURS (id_working_hours, start_mon, end_mon, start_tues, end_tues, start_wed, end_wed, start_thurs, end_thurs, start_fri, end_fri, start_sat, end_sat, start_sun, end_sun)
+values (default, '9:00','18:00','89:00','18:00','9:00','18:00','9:00','18:00','8:00','18:00','8:00','18:00','8:00','18:00');
+
+
+--Заполнение таблицы график работы
 
 insert into UHATKIN_EV.PATIENT (id_patient, name, surname, patronymic, floor, birthday, phone, id_plots, id_account)
 values (default, 'Дмитрий','Дюмин','Анатольевич',1,'04-07-1999','899633564',2,1);
@@ -246,4 +255,45 @@ values (default, 'Светлана','Люкина','Сергеевна',2,'18-01
 insert into UHATKIN_EV.PATIENT (id_patient, name, surname, patronymic, floor, birthday, phone, id_plots, id_account)
 values (default, 'Дмитрий','Игнат','Анатольевич',1,'12-12-2000','899656458',4,3);
 
+--Заполнение таблицы пациенты
+
+insert into UHATKIN_EV.HOSPITAL (id_hospital, name, id_medical_organization, id_type_hospital, id_status_hospital, id_working_hours, id_archive)
+values (default, 'Больница №1',1,1,2,3,2);
+
+insert into UHATKIN_EV.HOSPITAL (id_hospital, name, id_medical_organization, id_type_hospital, id_status_hospital, id_working_hours, id_archive)
+values (default, 'Больница №2',1,2,1,4,2);
+
+insert into UHATKIN_EV.HOSPITAL (id_hospital, name, id_medical_organization, id_type_hospital, id_status_hospital, id_working_hours, id_archive)
+values (default, 'Больница 1',2,1,2,5,2);
+
+insert into UHATKIN_EV.HOSPITAL (id_hospital, name, id_medical_organization, id_type_hospital, id_status_hospital, id_working_hours, id_archive)
+values (default, 'Больница №2',3,1,2,3,2);
+
+insert into UHATKIN_EV.HOSPITAL (id_hospital, name, id_medical_organization, id_type_hospital, id_status_hospital, id_working_hours, id_archive)
+values (default, 'Больница №1',1,1,2,3,1);
+
+insert into UHATKIN_EV.HOSPITAL (id_hospital, name, id_medical_organization, id_type_hospital, id_status_hospital, id_working_hours, id_archive)
+values (default, 'Больница №2',10,1,2,3,2);
+
+insert into UHATKIN_EV.HOSPITAL (id_hospital, name, id_medical_organization, id_type_hospital, id_status_hospital, id_working_hours, id_archive)
+values (default, 'Больница №1',6,2,1,4,2);
+
+insert into UHATKIN_EV.HOSPITAL (id_hospital, name, id_medical_organization, id_type_hospital, id_status_hospital, id_working_hours, id_archive)
+values (default, 'Больница №2',3,1,2,5,2);
+
+insert into UHATKIN_EV.HOSPITAL (id_hospital, name, id_medical_organization, id_type_hospital, id_status_hospital, id_working_hours, id_archive)
+values (default, 'Больница №1',9,2,2,5,2);
+
+insert into UHATKIN_EV.HOSPITAL (id_hospital, name, id_medical_organization, id_type_hospital, id_status_hospital, id_working_hours, id_archive)
+values (default, 'Больница №2',11,1,2,3,1);
+
+insert into UHATKIN_EV.HOSPITAL (id_hospital, name, id_medical_organization, id_type_hospital, id_status_hospital, id_working_hours, id_archive)
+values (default, 'Больница №3',17,1,2,5,2);
+
+
+
+--Заполнение таблицы больницы
+
+--insert into UHATKIN_EV.DOCTOR (id_doctor, name, surname, patronymic, id_hospital, id_archive)
+--values (default, 'Олег','Ухаткин', 'Анатольевич',)
 commit;
