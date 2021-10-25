@@ -34,13 +34,6 @@ create sequence seq_id_status_hospital
     cache 10;
 
 
-create sequence seq_id_area
-    minvalue 1
-    maxvalue 9999999999999
-    start with 1
-    increment by 1
-    cache 10;
-
 create sequence seq_id_gender
     minvalue 1
     maxvalue 9999999999999
@@ -83,19 +76,6 @@ create sequence seq_id_doctor
     increment by 1
     cache 10;
 
-create sequence seq_id_area_and_doctor
-    minvalue 1
-    maxvalue 9999999999999
-    start with 1
-    increment by 1
-    cache 10;
-
-create sequence seq_id_speciality_and_doctor
-    minvalue 1
-    maxvalue 9999999999999
-    start with 1
-    increment by 1
-    cache 10;
 
 create sequence seq_id_status_ticket
     minvalue 1
@@ -139,6 +119,21 @@ create sequence seq_id_records
     increment by 1
     cache 10;
 
+create sequence seq_id_document_number
+    minvalue 1
+    maxvalue 9999999999999
+    start with 1
+    increment by 1
+    cache 10;
+
+create sequence seq_id_document
+    minvalue 1
+    maxvalue 9999999999999
+    start with 1
+    increment by 1
+    cache 10;
+
+
 create table regions(
 id_regions number default seq_id_regions.nextval primary key,
 name varchar(100) not null
@@ -167,34 +162,18 @@ name varchar(100) not null
 );
 
 
-
-create table area (
-id_area number default seq_id_area.nextval primary key,
-name varchar(100) not null
-);
-
 create table gender (
 id_gender number default seq_id_gender.nextval primary key,
 name varchar(100) not null
 );
 
 create table working_hours (
-                                id_working_hours number default seq_id_working_hours.nextval primary key,
-                                start_mon varchar(100) ,
-                                end_mon varchar(100) ,
-                                start_tues varchar(100) ,
-                                end_tues varchar(100) ,
-                                start_wed varchar(100),
-                                end_wed varchar(100),
-                                start_thurs varchar(100) ,
-                                end_thurs varchar(100) ,
-                                start_fri varchar(100),
-                                end_fri varchar(100),
-                                start_sat varchar(100) ,
-                                end_sat varchar(100),
-                                start_sun varchar(100) ,
-                                end_sun varchar(100)
- ); --Изменить
+id_working_hours number default seq_id_working_hours.nextval primary key,
+day varchar2(100),
+begin_time number(4,2),
+end_time number(4,2),
+id_hospital number references hospital (id_hospital)
+ );
 
 create table age (
 id_age number default seq_id_age.nextval primary key,
@@ -207,7 +186,6 @@ create table speciality (
 id_speciality number default seq_id_speciality.nextval primary key,
 name varchar(100) not null ,
 id_gender number references gender (id_gender) not null ,
-qualification int default  null, --Изменить
 id_age number references age (id_age) not null ,
 delete_dt date default null
 );
@@ -220,7 +198,6 @@ name varchar(100) not null ,
 id_medical_organization number references medical_organization (id_medical_organization) not null ,
 id_type_hospital number references type_hospital (id_type_hospital) not null ,
 id_status_hospital number references status_hospital (id_status_hospital) not null ,
-id_working_hours  number references  working_hours (id_working_hours) not null ,
 delete_dt date default null
 );
 
@@ -230,18 +207,14 @@ name varchar(100) not null ,
 surname varchar(100) not null ,
 patronymic varchar(100) not null ,
 id_hospital number references hospital (id_hospital) not null ,
-delete_dt date default null
---Добавить ЗП и доки
+delete_dt date default null,
+area varchar2(100) not null,
+qualification int default  null,
+salary int  not null
 );
 
-create table area_and_doctor (
-id_area_and_doctor number default seq_id_area_and_doctor.nextval primary key,
-id_doctor number references doctor (id_doctor) not null ,
-id_area number references area (id_area) not null
-);
 
 create table  speciality_and_doctor (
-id_speciality_and_doctor number default seq_id_speciality_and_doctor.nextval primary key,
 id_doctor number references doctor (id_doctor) not null ,
 id_speciality number references speciality (id_speciality) not null
 );
@@ -273,10 +246,22 @@ patronymic varchar(100) default null,
 gender number references gender (id_gender),
 birthday date not null ,
 phone varchar(9) default null,
-id_area number references area (id_area) not null ,
+area varchar2(100) not null ,
 id_account number references account (id_account) not null
--- Добавить документы
 );
+
+create table document_number (
+id_document_number number default seq_id_document_number.nextval primary key,
+id_patient number references patient (id_patient),
+id_document number references document (id_document),
+value varchar2(50)
+);
+
+create table document (
+id_document number default seq_id_document.nextval primary key ,
+name varchar2(50)
+);
+
 
 create table status_records (
 id_status_records number default seq_id_status_records.nextval primary key,
@@ -289,4 +274,5 @@ id_ticket number references ticket (id_ticket) not null ,
 id_patient number references patient (id_patient) not null ,
 id_status_records number references status_records (id_status_records) not null
 );
+
 
