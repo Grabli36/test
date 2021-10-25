@@ -177,7 +177,6 @@ id_hospital number references hospital (id_hospital)
 
 create table age (
 id_age number default seq_id_age.nextval primary key,
-name varchar(100) not null ,
 min_age int not null,
 max_age int not null
 );
