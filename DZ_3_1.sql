@@ -128,3 +128,94 @@ dbms_output.put_line(v_r_doctor.qualification);
 end loop;
 close v_c_doctor;
 end;
+
+-- Документы
+declare
+v_c_document sys_refcursor;
+
+type r_document is record (
+    name varchar2(100)
+);
+
+v_r_document r_document;
+
+begin
+open v_c_document for
+select name from document;
+loop
+fetch v_c_document  into v_r_document ;
+exit when v_c_document%notfound;
+
+dbms_output.put_line(v_r_document.name);
+
+
+
+end loop;
+close v_c_document;
+end;
+
+-- выдать расписание больницы
+
+declare
+v_c_working_hours sys_refcursor;
+
+type r_working_hours is record (
+    id_working_hours  number,
+    day varchar2(100),
+    begin_time number,
+    end_time number,
+    id_hospital number
+);
+
+v_r_working_hours r_working_hours;
+
+begin
+open v_c_working_hours for
+select * from WORKING_HOURS;
+loop
+fetch v_c_working_hours  into v_r_working_hours ;
+exit when v_c_working_hours%notfound;
+
+
+dbms_output.put_line(v_r_working_hours.id_working_hours);
+dbms_output.put_line(v_r_working_hours.day);
+dbms_output.put_line(v_r_working_hours.begin_time);
+dbms_output.put_line(v_r_working_hours.end_time);
+dbms_output.put_line(v_r_working_hours.id_hospital);
+
+
+end loop;
+close v_c_working_hours;
+end;
+
+--выдать журнал пациента
+
+declare
+v_c_records sys_refcursor;
+
+type r_records is record (
+    id_records number,
+    id_ticket number,
+    id_patient number,
+    id_status_records number
+);
+
+v_r_records r_records;
+
+begin
+open v_c_records for
+select * from RECORDS;
+loop
+fetch v_c_records  into v_r_records ;
+exit when v_c_records%notfound;
+
+
+dbms_output.put_line(v_r_records.id_records);
+dbms_output.put_line(v_r_records.id_ticket);
+dbms_output.put_line(v_r_records.id_patient);
+dbms_output.put_line(v_r_records.id_status_records);
+
+
+end loop;
+close v_c_records;
+end;
